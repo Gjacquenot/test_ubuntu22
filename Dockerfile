@@ -17,6 +17,7 @@ RUN apt-get update \
     pkg-config \
     unzip \
     wget \
+    coinor-libipopt-dev \
  && rm -rf /var/lib/apt/lists/*
 
 # CMake
@@ -45,32 +46,32 @@ RUN git clone https://github.com/boostorg/geometry \
  && cp -rf include/boost/geometry/extensions /opt/boost/include/boost/geometry/. \
  && cd .. \
  && rm -rf geometry
-
-# Ipopt
-# http://www.coin-or.org/Ipopt/documentation/node10.html
-ENV IPOPT_VERSION=3.12.9
-RUN gfortran --version \
- && wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$IPOPT_VERSION.tgz -O ipopt_src.tgz \
- && mkdir -p ipopt_src \
- && tar -xf ipopt_src.tgz --strip 1 -C ipopt_src \
- && rm -rf ipopt_src.tgz \
- && cd ipopt_src \
- && cd ThirdParty/Blas \
- &&     ./get.Blas \
- && cd ../Lapack \
- &&     ./get.Lapack \
- && cd ../Mumps \
- &&     ./get.Mumps \
- && cd ../../ \
- && mkdir build \
- && cd build \
- && ../configure -with-pic --disable-shared --prefix=/opt/CoinIpopt \
- && make \
- && make test \
- && make install \
- && cd .. \
- && cd .. \
- && rm -rf ipopt_src
+#
+## Ipopt
+## http://www.coin-or.org/Ipopt/documentation/node10.html
+#ENV IPOPT_VERSION=3.12.9
+#RUN gfortran --version \
+# && wget http://www.coin-or.org/download/source/Ipopt/Ipopt-$IPOPT_VERSION.tgz -O ipopt_src.tgz \
+# && mkdir -p ipopt_src \
+# && tar -xf ipopt_src.tgz --strip 1 -C ipopt_src \
+# && rm -rf ipopt_src.tgz \
+# && cd ipopt_src \
+# && cd ThirdParty/Blas \
+# &&     ./get.Blas \
+# && cd ../Lapack \
+# &&     ./get.Lapack \
+# && cd ../Mumps \
+# &&     ./get.Mumps \
+# && cd ../../ \
+# && mkdir build \
+# && cd build \
+# && ../configure -with-pic --disable-shared --prefix=/opt/CoinIpopt \
+# && make \
+# && make test \
+# && make install \
+# && cd .. \
+# && cd .. \
+# && rm -rf ipopt_src
 
 RUN wget https://github.com/eigenteam/eigen-git-mirror/archive/3.3.5.tar.gz -O eigen.tgz \
  && mkdir -p /opt/eigen \
