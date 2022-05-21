@@ -22,3 +22,10 @@ jobs:
     - name: Build and push the docker image
       run: |
         docker build -t gjacquenot/xdynubuntu .
+    - name: Compile
+      run: |
+        git clone --recursive https://gitlab.com/sirehna_naval_group/sirehna/xdyn
+        cd xdyn
+        git checkout master
+        cd ..
+        make
