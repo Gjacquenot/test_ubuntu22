@@ -34,7 +34,7 @@ RUN wget http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.t
  && tar -xzf boost_src.tar.gz --strip 1 -C boost_src \
  && rm -rf boost_src.tar.gz \
  && cd boost_src \
- && ./bootstrap.sh --with-toolset=intel-linux \
+ && ./bootstrap.sh \
  && ./b2 cxxflags=-fPIC --without-mpi --without-python link=static threading=single threading=multi --layout=tagged --prefix=/opt/boost install \
  && cd .. \
  && rm -rf boost_src
