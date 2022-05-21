@@ -36,7 +36,7 @@ RUN wget http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.t
  && rm -rf boost_src.tar.gz \
  && cd boost_src \
  && ./bootstrap.sh \
- && ./b2 cxxflags=-fPIC --without-mpi --without-python link=static threading=single threading=multi --layout=tagged --prefix=/opt/boost install \
+ && ./b2 cxxflags=-fPIC --without-mpi --without-python link=static threading=single threading=multi --layout=tagged --prefix=/opt/boost install > /dev/null \
  && cd .. \
  && rm -rf boost_src
 # BOOST Geometry extension
@@ -137,16 +137,12 @@ RUN cd /opt \
  && git checkout 2c782414251e75a2de9b0441c349f5f18fe929a2
 
 ARG GIT_GRPC_TAG=v1.30.2
-RUN . ./opt/intel/oneapi/setvars.sh \
- && git clone --recurse-submodules -b ${GIT_GRPC_TAG} https://github.com/grpc/grpc grpc_src \
+RUN git clone --recurse-submodules -b ${GIT_GRPC_TAG} https://github.com/grpc/grpc grpc_src \
  && cd grpc_src \
  && mkdir -p cmake/build \
  && cd cmake/build \
  && /opt/dist/usr/local/bin/cmake \
       -G "Unix Makefiles" \
-      -D CMAKE_C_COMPILER=icc \
-      -D CMAKE_CXX_COMPILER=icpc \
-      -D CMAKE_FC_COMPILER=ifort \
       -D gRPC_INSTALL:BOOL=ON \
       -D CMAKE_INSTALL_PREFIX=/opt/grpc \
       -D CMAKE_BUILD_TYPE=Release \
