@@ -112,9 +112,6 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/src
  && cd HDF5_build \
  && /opt/dist/usr/local/bin/cmake \
       -G "Unix Makefiles" \
-      -D CMAKE_C_COMPILER=icc \
-      -D CMAKE_CXX_COMPILER=icpc \
-      -D CMAKE_FC_COMPILER=ifort \
       -D CMAKE_BUILD_TYPE:STRING=Release \
       -D CMAKE_INSTALL_PREFIX:PATH=${HDF5_INSTALL} \
       -D BUILD_SHARED_LIBS:BOOL=OFF \
@@ -156,7 +153,3 @@ RUN git clone --recurse-submodules -b ${GIT_GRPC_TAG} https://github.com/grpc/gr
  && make install \
  && cd ../../.. \
  && rm -rf grpc_src
-
-ENV CMAKE_PREFIX_PATH='/opt/intel/oneapi/tbb/latest:/opt/intel/oneapi/compiler/latest/linux/IntelDPCPP'
-ENV ONEAPI_ROOT='/opt/intel/oneapi'
-ENV PATH='/opt/intel/oneapi/mpi/latest/libfabric/bin:/opt/intel/oneapi/mpi/latest/bin:/opt/intel/oneapi/dev-utilities/latest/bin:/opt/intel/oneapi/debugger/latest/gdb/intel64/bin:/opt/intel/oneapi/compiler/latest/linux/lib/oclfpga/bin:/opt/intel/oneapi/compiler/latest/linux/bin/intel64:/opt/intel/oneapi/compiler/latest/linux/bin:/opt/dist/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
