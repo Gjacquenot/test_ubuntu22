@@ -30,7 +30,7 @@ RUN mkdir -p /opt && mkdir -p /opt/build && cd /opt/build \
 # SSC : system thread random chrono
 # XDYN : program_options filesystem system regex
 # libbz2 is required for Boost compilation
-RUN wget http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz -O boost_src.tar.gz \
+RUN wget --quiet http://sourceforge.net/projects/boost/files/boost/1.60.0/boost_1_60_0.tar.gz -O boost_src.tar.gz \
  && mkdir -p boost_src \
  && tar -xzf boost_src.tar.gz --strip 1 -C boost_src \
  && rm -rf boost_src.tar.gz \
