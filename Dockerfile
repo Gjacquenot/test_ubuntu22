@@ -1,30 +1,24 @@
 FROM ubuntu:22.04
 RUN apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    build-essential \
+ && apt-get install -y --no-install-recommends \
     ca-certificates \
+    cmake \
     curl \
     git \
     gpg-agent \
-    libbz2-dev \
-    software-properties-common \
-    ninja-build \
     g++ \
     gcc \
     gfortran \
     libblas3 \
     liblapack3 \
+    libbz2-dev \
+    ninja-build \
     pkg-config \
+    software-properties-common \
     unzip \
     wget \
     coinor-libipopt-dev \
  && rm -rf /var/lib/apt/lists/*
-
-# CMake
-RUN mkdir -p /opt && mkdir -p /opt/build && cd /opt/build \
- && curl -L https://github.com/Kitware/CMake/releases/download/v3.23.1/cmake-3.23.1-linux-x86_64.sh --output cmake.sh \
- && mkdir -p /opt/dist/usr/local \
- && /bin/bash cmake.sh --prefix=/opt/dist/usr/local --skip-license
 
 # BOOST 1.60 with Boost geometry extensions
 # SSC : system thread random chrono
