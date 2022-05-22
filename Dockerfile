@@ -12,6 +12,7 @@ RUN apt-get update \
     libblas3 \
     liblapack3 \
     libbz2-dev \
+    make \
     ninja-build \
     pkg-config \
     software-properties-common \
