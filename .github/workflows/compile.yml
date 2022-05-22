@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
     - name: Build and push the docker image
       run: |
-        docker pull gjacquenot/xdynubuntu
+        docker pull gjacquenot/xdynubuntu || true
         docker build --cache-from gjacquenot/xdynubuntu -t gjacquenot/xdynubuntu .
         docker push gjacquenot/xdynubuntu
     - name: Compile
