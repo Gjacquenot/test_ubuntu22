@@ -39,15 +39,11 @@ cmake-ubuntu-intel-target: SHELL:=/bin/bash
 cmake-ubuntu-intel-target: xdyn/code/yaml-cpp/CMakeLists.txt
 	docker pull $(DOCKER_IMAGE) || true
 	$(DOCKER_AS_USER) $(DOCKER_IMAGE) /bin/bash -c \
-	   "source /opt/intel/oneapi/setvars.sh && \
-	    cd /opt/share &&\
+	   "cd /opt/share &&\
 	    mkdir -p $(BUILD_DIR) &&\
 	    cd $(BUILD_DIR) &&\
 	    cmake -Wno-dev \
 	     -G Ninja \
-	     -D CMAKE_C_COMPILER=icc \
-	     -D CMAKE_CXX_COMPILER=icpc \
-	     -D CMAKE_FC_COMPILER=ifort \
 	     -D THIRD_PARTY_DIRECTORY=/opt/ \
 	     -D BUILD_DOCUMENTATION:BOOL=False \
 	     -D CPACK_GENERATOR=$(CPACK_GENERATOR) \
@@ -62,8 +58,7 @@ cmake-ubuntu-intel-target: xdyn/code/yaml-cpp/CMakeLists.txt
 build-ubuntu-intel: SHELL:=/bin/bash
 build-ubuntu-intel:
 	$(DOCKER_AS_USER) $(DOCKER_IMAGE) /bin/bash -c \
-	   "source /opt/intel/oneapi/setvars.sh && \
-	    cd /opt/share && \
+	   "cd /opt/share && \
 	    mkdir -p $(BUILD_DIR) && \
 	    cd $(BUILD_DIR) && \
 	    ninja $(NB_OF_PARALLEL_BUILDS) package"
@@ -71,8 +66,7 @@ build-ubuntu-intel:
 test-ubuntu-intel: SHELL:=/bin/bash
 test-ubuntu-intel:
 	$(DOCKER_AS_USER) $(DOCKER_IMAGE) /bin/bash -c \
-	   "source /opt/intel/oneapi/setvars.sh && \
-	    cp validation/codecov_bash.sh $(BUILD_DIR) && \
+	   "cp validation/codecov_bash.sh $(BUILD_DIR) && \
 	    cd $(BUILD_DIR) &&\
 	    ./run_all_tests &&\
 	    if [[ $(BUILD_TYPE) == Coverage ]];\
