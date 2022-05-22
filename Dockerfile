@@ -110,7 +110,7 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.12/src
  && tar -xf hdf5_source.tar.gz --strip 1 -C HDF5_SRC \
  && mkdir -p HDF5_build \
  && cd HDF5_build \
- && /opt/dist/usr/local/bin/cmake \
+ && cmake \
       -G "Unix Makefiles" \
       -D CMAKE_BUILD_TYPE:STRING=Release \
       -D CMAKE_INSTALL_PREFIX:PATH=${HDF5_INSTALL} \
@@ -133,12 +133,12 @@ RUN cd /opt \
  && cd eigen3-hdf5 \
  && git checkout 2c782414251e75a2de9b0441c349f5f18fe929a2
 
-ARG GIT_GRPC_TAG=v1.30.2
+ARG GIT_GRPC_TAG=v1.46.3
 RUN git clone --recurse-submodules -b ${GIT_GRPC_TAG} https://github.com/grpc/grpc grpc_src \
  && cd grpc_src \
  && mkdir -p cmake/build \
  && cd cmake/build \
- && /opt/dist/usr/local/bin/cmake \
+ && cmake \
       -G "Unix Makefiles" \
       -D gRPC_INSTALL:BOOL=ON \
       -D CMAKE_INSTALL_PREFIX=/opt/grpc \
