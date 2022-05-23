@@ -78,7 +78,7 @@ RUN wget https://github.com/jbeder/yaml-cpp/archive/release-0.3.0.tar.gz -O yaml
  && tar -xzf yaml_cpp.tgz --strip 1 -C /opt/yaml_cpp \
  && rm -rf yaml_cpp.tgz
 
-RUN wget https://github.com/google/googletest/archive/release-1.8.0.tar.gz -O googletest.tgz \
+RUN wget https://github.com/google/googletest/archive/release-1.11.0.tar.gz -O googletest.tgz \
  && mkdir -p /opt/googletest \
  && tar -xzf googletest.tgz --strip 1 -C /opt/googletest \
  && rm -rf googletest.tgz
