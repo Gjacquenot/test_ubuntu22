@@ -28,6 +28,4 @@ jobs:
       run: |
         git clone --recursive https://gitlab.com/sirehna_naval_group/sirehna/xdyn
         cd xdyn
-        git checkout 69-update-code-so-that-it-compiles-with-ubuntu-22-04-and-gcc-11
-        cd ..
-        make
+        make ubuntu_22_04_release_gcc_11
