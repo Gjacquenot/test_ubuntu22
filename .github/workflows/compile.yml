@@ -28,4 +28,4 @@ jobs:
       run: |
         git clone --recursive https://gitlab.com/sirehna_naval_group/sirehna/xdyn
         cd xdyn
-        make ubuntu_22_04_release_gcc_11
+        make update-submodules headers ubuntu_22_04_release_gcc_11
